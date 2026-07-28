@@ -73,11 +73,11 @@ export default function Home() {
   }, [jobId, isComplete, error, API_URL]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans p-6 selection:bg-indigo-500 selection:text-white">
-      <main className="max-w-4xl mx-auto space-y-12 py-12">
+    <div className="min-h-screen bg-transparent text-slate-200 font-sans p-6">
+      <main className="max-w-4xl mx-auto space-y-12 py-12 animate-[fadeInUp_0.8s_ease-out_forwards]">
         
         {/* Header */}
-        <header className="text-center space-y-4">
+        <header className="text-center space-y-4 animate-[float_6s_ease-in-out_infinite]">
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 drop-shadow-sm">
             AI Video Factory
           </h1>
@@ -90,18 +90,18 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-8">
           
           {/* Form Column */}
-          <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 shadow-2xl">
+          <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 shadow-2xl hover:shadow-[0_0_25px_rgba(99,102,241,0.2)] transition-shadow duration-500">
             <form onSubmit={handleGenerate} className="space-y-6">
               
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-300 ml-1">Video Script</label>
+              <div className="space-y-2 group">
+                <label className="text-sm font-medium text-slate-300 ml-1 transition-colors group-focus-within:text-indigo-400">Video Script</label>
                 <textarea 
                   required
                   rows={4}
                   value={script}
                   onChange={(e) => setScript(e.target.value)}
                   placeholder="A cinematic drone shot over a glowing cyberpunk city..."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all resize-none"
+                  className="w-full bg-slate-950/80 border border-slate-800 rounded-2xl p-4 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all resize-none"
                 />
               </div>
 
@@ -109,10 +109,10 @@ export default function Home() {
                 <label className="text-sm font-medium text-slate-300 ml-1">Reference Image (Optional)</label>
                 <div 
                   onClick={() => fileInputRef.current?.click()}
-                  className="w-full border-2 border-dashed border-slate-800 hover:border-indigo-500/50 bg-slate-950/50 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer transition-all group"
+                  className="w-full border-2 border-dashed border-slate-700 hover:border-indigo-500/80 bg-slate-950/50 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:bg-slate-900 group"
                 >
-                  <UploadCloud className="w-8 h-8 text-slate-500 group-hover:text-indigo-400 transition-colors mb-2" />
-                  <span className="text-sm text-slate-500 group-hover:text-slate-300">
+                  <UploadCloud className="w-8 h-8 text-slate-500 group-hover:text-indigo-400 group-hover:scale-110 transition-all duration-300 mb-2" />
+                  <span className="text-sm text-slate-500 group-hover:text-slate-300 transition-colors">
                     {image ? image.name : "Click to upload an image"}
                   </span>
                   <input 
@@ -128,12 +128,12 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-300 ml-1">Language</label>
+                <div className="space-y-2 group">
+                  <label className="text-sm font-medium text-slate-300 ml-1 transition-colors group-focus-within:text-indigo-400">Language</label>
                   <select 
                     value={language} 
                     onChange={(e) => setLanguage(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 appearance-none"
+                    className="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none cursor-pointer hover:bg-slate-900"
                   >
                     <option value="en">English (US)</option>
                     <option value="es">Spanish</option>
@@ -141,12 +141,12 @@ export default function Home() {
                   </select>
                 </div>
                 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-300 ml-1">Aspect Ratio</label>
+                <div className="space-y-2 group">
+                  <label className="text-sm font-medium text-slate-300 ml-1 transition-colors group-focus-within:text-indigo-400">Aspect Ratio</label>
                   <select 
                     value={aspectRatio} 
                     onChange={(e) => setAspectRatio(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 appearance-none"
+                    className="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none cursor-pointer hover:bg-slate-900"
                   >
                     <option value="16:9">16:9 (Landscape)</option>
                     <option value="9:16">9:16 (Portrait)</option>
@@ -158,7 +158,7 @@ export default function Home() {
               <button 
                 type="submit" 
                 disabled={!script.trim() || !!jobId}
-                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl py-4 flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_30px_rgba(79,70,229,0.5)]"
+                className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-xl py-4 flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_30px_rgba(79,70,229,0.5)] transform hover:-translate-y-1 active:translate-y-0"
               >
                 {jobId && !isComplete ? (
                   <>
@@ -166,7 +166,7 @@ export default function Home() {
                   </>
                 ) : (
                   <>
-                    <Video className="w-5 h-5" /> Generate Video
+                    <Video className="w-5 h-5 group-hover:animate-pulse" /> Generate Video
                   </>
                 )}
               </button>
@@ -177,28 +177,28 @@ export default function Home() {
           <div className="flex flex-col space-y-6">
             
             {/* Status Panel */}
-            <div className={`p-6 rounded-3xl border transition-all ${
-              error ? 'bg-red-950/30 border-red-900/50 text-red-400' : 
-              isComplete ? 'bg-emerald-950/30 border-emerald-900/50 text-emerald-400' : 
-              jobId ? 'bg-indigo-950/30 border-indigo-900/50 text-indigo-400' : 
-              'bg-slate-900/30 border-slate-800/50 text-slate-500'
+            <div className={`p-6 rounded-3xl border transition-all duration-500 ease-in-out ${
+              error ? 'bg-red-950/30 border-red-900/50 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.1)]' : 
+              isComplete ? 'bg-emerald-950/30 border-emerald-900/50 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 
+              jobId ? 'bg-indigo-950/30 border-indigo-900/50 text-indigo-400 shadow-[0_0_15px_rgba(79,70,229,0.1)]' : 
+              'bg-slate-900/30 border-slate-800/50 text-slate-500 hover:bg-slate-900/50'
             }`}>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
                 Status Dashboard
                 {jobId && !isComplete && !error && <span className="relative flex h-3 w-3 ml-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span></span>}
               </h3>
-              <p className="font-mono text-sm tracking-tight break-words">
+              <p className="font-mono text-sm tracking-tight break-words transition-opacity duration-300">
                 {error ? `❌ ${error}` : status ? `> ${status}` : "> Ready to generate..."}
               </p>
               {jobId && <p className="font-mono text-xs opacity-50 mt-2">Job ID: {jobId}</p>}
             </div>
 
             {/* Video Player */}
-            <div className="flex-1 bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl group">
+            <div className="flex-1 bg-slate-900/40 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl group transition-all duration-500 hover:border-slate-700">
               {isComplete && jobId ? (
-                <div className="w-full h-full flex flex-col items-center justify-center space-y-6">
+                <div className="w-full h-full flex flex-col items-center justify-center space-y-6 animate-[fadeInUp_0.5s_ease-out]">
                   {/* Notice: since it's an ephemeral backend file, we show it directly via standard browser download/player using API_URL */}
-                  <div className="w-full aspect-video bg-black rounded-2xl overflow-hidden border border-slate-700 shadow-inner flex items-center justify-center relative">
+                  <div className="w-full aspect-video bg-black rounded-2xl overflow-hidden border border-slate-700 shadow-inner flex items-center justify-center relative group-hover:shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-shadow">
                      <video 
                         controls 
                         autoPlay 
@@ -209,15 +209,15 @@ export default function Home() {
                   <a 
                     href={`${API_URL}/api/download/${jobId}`} 
                     download="final_video.mp4"
-                    className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl py-4 flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
+                    className="w-full bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-semibold rounded-xl py-4 flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] transform hover:-translate-y-1 active:translate-y-0"
                   >
-                    <Download className="w-5 h-5" /> Download Result
+                    <Download className="w-5 h-5 animate-bounce" /> Download Result
                   </a>
                 </div>
               ) : (
-                <div className="text-center opacity-40 group-hover:opacity-60 transition-opacity">
-                  <PlayCircle className="w-16 h-16 mx-auto mb-4 stroke-1" />
-                  <p className="text-sm">Video Preview</p>
+                <div className="text-center opacity-40 group-hover:opacity-80 transition-all duration-500 transform group-hover:scale-105">
+                  <PlayCircle className="w-16 h-16 mx-auto mb-4 stroke-1 animate-[pulse_4s_ease-in-out_infinite]" />
+                  <p className="text-sm font-medium tracking-wide">Video Preview</p>
                 </div>
               )}
             </div>
