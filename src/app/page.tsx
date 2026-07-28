@@ -137,7 +137,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <div className="space-y-3 group">
                   <label className="text-sm font-semibold tracking-wide text-slate-400 ml-1 transition-colors group-focus-within:text-indigo-400">Language</label>
                   <div className="relative">
@@ -147,6 +147,10 @@ export default function Home() {
                       className="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-200 focus:outline-none focus:border-indigo-500/60 focus:ring-4 focus:ring-indigo-500/10 transition-all appearance-none cursor-pointer hover:bg-slate-900 shadow-inner"
                     >
                       <option value="en">English (US)</option>
+                      <option value="hi">Hindi</option>
+                      <option value="ta">Tamil</option>
+                      <option value="te">Telugu</option>
+                      <option value="bn">Bengali</option>
                       <option value="es">Spanish</option>
                       <option value="fr">French</option>
                     </select>
@@ -165,6 +169,24 @@ export default function Home() {
                       <option value="16:9">16:9 (Landscape)</option>
                       <option value="9:16">9:16 (Portrait)</option>
                       <option value="1:1">1:1 (Square)</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500 group-focus-within:text-indigo-400 transition-colors">▼</div>
+                  </div>
+                </div>
+
+                <div className="space-y-3 group">
+                  <label className="text-sm font-semibold tracking-wide text-slate-400 ml-1 transition-colors group-focus-within:text-indigo-400">Length</label>
+                  <div className="relative">
+                    <select 
+                      value={lengthSecs} 
+                      onChange={(e) => setLengthSecs(e.target.value)}
+                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-200 focus:outline-none focus:border-indigo-500/60 focus:ring-4 focus:ring-indigo-500/10 transition-all appearance-none cursor-pointer hover:bg-slate-900 shadow-inner"
+                    >
+                      <option value="5">5 Seconds</option>
+                      <option value="10">10 Seconds</option>
+                      <option value="15">15 Seconds</option>
+                      <option value="30">30 Seconds</option>
+                      <option value="60">60 Seconds</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500 group-focus-within:text-indigo-400 transition-colors">▼</div>
                   </div>
