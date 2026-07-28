@@ -18,7 +18,8 @@ export default function Home() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+  // Default to the deployed Render backend so it works out of the box on Vercel
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://ai-video-backend-3g6j.onrender.com";
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
